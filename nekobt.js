@@ -19,35 +19,9 @@ function parseSize(bytes) {
   return `${size.toFixed(2)} ${units[unit]}`;
 }
 
-function extractTorznabAttr(item, attrName) {
-  const attrs = item.getElementsByTagName("torznab:attr");
-
-  for (const attr of attrs) {
-    if (attr.getAttribute("name") === attrName) {
-      return attr.getAttribute("value");
-    }
-  }
-
-  return null;
-}
-
-async function fetchXML(url) {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status}`);
-  }
-
-  const text = await response.text();
-
-  return new DOMParser().parseFromString(text, "text/xml");
-}
-
 export default {
   id: "nekobt",
-
   name: "nekoBT",
-
   version: "1.0.0",
 
   async search(query, options = {}) {
@@ -59,90 +33,60 @@ export default {
 
     const baseUrl =
       options.baseUrl ||
-      "https://nekobt.to/api/torznab/api";
+      "https://nekobt.to/api/v1/search";
 
     const category =
-      TORZNAB_CATEGORIES[
-        options.category || "anime"
-      ];
+      TORZNAB_CATEGORIES[options.category || "anime"];
 
     const params = new URLSearchParams({
-      t: "search",
       q: query,
       apikey: apiKey
     });
 
+    // optional category support (only if API supports it)
     if (category) {
       params.set("cat", category);
     }
 
     const url = `${baseUrl}?${params.toString()}`;
 
-    const xml = await fetchXML(url);
+    const response = await fetch(url);
 
-    const items = xml.getElementsByTagName("item");
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Expecting something like: { results: [...] }
+    const items = data.results || data.data || data || [];
 
     const results = [];
 
     for (const item of items) {
-      const title =
-        item.getElementsByTagName("title")[0]
-          ?.textContent || "Unknown";
-
-      const guid =
-        item.getElementsByTagName("guid")[0]
-          ?.textContent || "";
-
-      const link =
-        item.getElementsByTagName("link")[0]
-          ?.textContent || "";
-
-      const size =
-        item.getElementsByTagName("size")[0]
-          ?.textContent || "0";
-
-      const pubDate =
-        item.getElementsByTagName("pubDate")[0]
-          ?.textContent || "";
-
-      const seeders = Number(
-        extractTorznabAttr(item, "seeders") || 0
-      );
-
-      const peers = Number(
-        extractTorznabAttr(item, "peers") || 0
-      );
-
-      const leechers =
-        peers > seeders
-          ? peers - seeders
-          : Number(
-              extractTorznabAttr(item, "leechers") || 0
-            );
-
-      const magnet =
-        extractTorznabAttr(item, "magneturl") ||
-        link ||
-        guid;
-
       results.push({
-        title,
+        title: item.title || "Unknown",
 
-        magnet,
+        magnet:
+          item.magnet ||
+          item.download ||
+          item.link ||
+          "",
 
-        link: magnet,
+        link:
+          item.magnet ||
+          item.download ||
+          item.link ||
+          "",
 
-        seeders,
+        seeders: item.seeders || 0,
+        leechers: item.leechers || 0,
+        peers: item.peers || 0,
 
-        leechers,
+        size: parseSize(item.size),
+        bytes: Number(item.size || 0),
 
-        peers,
-
-        size: parseSize(size),
-
-        bytes: Number(size),
-
-        date: pubDate,
+        date: item.date || item.pubDate || "",
 
         source: "nekoBT"
       });
