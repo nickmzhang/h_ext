@@ -44,7 +44,7 @@ async function fetchXML(url) {
 }
 
 export default {
-  id: "myexample",
+  id: "nekobt",
 
   name: "nekoBT",
 
