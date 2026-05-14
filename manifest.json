@@ -12,24 +12,24 @@
     "media": "sub",
     "languages": ["US"],
     "url": "aHR0cHM6Ly9leGFtcGxlLmNvbQ==",
-    "icon": "https://nyaa.si/static/favicon.png",
+    "icon": "https://nekobt.to/favicon.ico",
     "update": "https://nickmzhang.github.io/h_ext/manifest.json",
     "code": "https://nickmzhang.github.io/h_ext/nekobt.js",
     "options": {
-      "myOptionName1": {
-        "type": "boolean",
-        "description": "User visible description of the option, shown in the extension settings",
-        "default": false
-      },
-      "myOptionName2": {
+      "apiKey": {
         "type": "string",
-        "description": "User visible description of the option, shown in the extension settings",
-        "default": "My string value"
+        "description": "Your nekoBT API key",
+        "default": ""
       },
-      "myOptionName3": {
-        "type": "number",
-        "description": "User visible description of the option, shown in the extension settings",
-        "default": 42
+      "baseUrl": {
+        "type": "string",
+        "description": "Torznab API URL",
+        "default": "https://nekobt.to/api/torznab/api"
+      },
+      "category": {
+        "type": "string",
+        "description": "Default category: anime, movies, or tv",
+        "default": "anime"
       }
     }
   }
