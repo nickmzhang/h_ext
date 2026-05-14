@@ -1,0 +1,36 @@
+[
+  {
+    "manifestVersion": 2,
+    "deprecated": true,
+    "name": "Nick ext",
+    "id": "nyaaext",
+    "version": "1.0.0",
+    "type": "torrent",
+    "accuracy": "high",
+    "updatePeers": false,
+    "ratio": 0,
+    "media": "sub",
+    "languages": ["US"],
+    "url": "aHR0cHM6Ly9leGFtcGxlLmNvbQ==",
+    "icon": "https://example.com/icon.png",
+    "update": "https://nickmzhang.github.io/h_ext/manifest.json",
+    "code": "https://yourname.github.io/h_ext/myexample.js",
+    "options": {
+      "myOptionName1": {
+        "type": "boolean",
+        "description": "User visible description of the option, shown in the extension settings",
+        "default": false
+      },
+      "myOptionName2": {
+        "type": "string",
+        "description": "User visible description of the option, shown in the extension settings",
+        "default": "My string value"
+      },
+      "myOptionName3": {
+        "type": "number",
+        "description": "User visible description of the option, shown in the extension settings",
+        "default": 42
+      }
+    }
+  }
+]
