@@ -22,8 +22,8 @@
       },
       "baseUrl": {
         "type": "string",
-        "description": "Torznab API URL",
-        "default": "https://nekobt.to/api/torznab/api"
+        "description": "API",
+        "default": "https://nekobt.to/api/v1"
       },
       "category": {
         "type": "string",
