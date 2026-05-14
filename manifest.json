@@ -13,8 +13,8 @@
     "languages": ["US"],
     "url": "aHR0cHM6Ly9uZWtvYnQudG8=",
     "icon": "https://nekobt.to/favicon.ico",
-    "update": "https://nickmzhang.github.io/h_ext/manifest.json",
-    "code": "https://nickmzhang.github.io/h_ext/nekobt.js",
+    "update": "https://raw.githubusercontent.com/nickmzhang/h_ext/refs/heads/main/manifest.json",
+    "code": "https://raw.githubusercontent.com/nickmzhang/h_ext/refs/heads/main/nekobt.js",
     "options": {
       "apiKey": {
         "type": "string",
