@@ -3,7 +3,7 @@
     "manifestVersion": 2,
     "deprecated": true,
     "name": "Nick ext",
-    "id": "nyaaext",
+    "id": "nekobt",
     "version": "1.0.0",
     "type": "torrent",
     "accuracy": "high",
@@ -14,7 +14,7 @@
     "url": "aHR0cHM6Ly9leGFtcGxlLmNvbQ==",
     "icon": "https://nyaa.si/static/favicon.png",
     "update": "https://nickmzhang.github.io/h_ext/manifest.json",
-    "code": "https://nickmzhang.github.io/h_ext/nyaa.js",
+    "code": "https://nickmzhang.github.io/h_ext/nekobt.js",
     "options": {
       "myOptionName1": {
         "type": "boolean",
