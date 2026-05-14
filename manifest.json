@@ -12,9 +12,9 @@
     "media": "sub",
     "languages": ["US"],
     "url": "aHR0cHM6Ly9leGFtcGxlLmNvbQ==",
-    "icon": "https://example.com/icon.png",
+    "icon": "https://nyaa.si/static/favicon.png",
     "update": "https://nickmzhang.github.io/h_ext/manifest.json",
-    "code": "https://yourname.github.io/h_ext/myexample.js",
+    "code": "https://nickmzhang.github.io/h_ext/nyaa.js",
     "options": {
       "myOptionName1": {
         "type": "boolean",
